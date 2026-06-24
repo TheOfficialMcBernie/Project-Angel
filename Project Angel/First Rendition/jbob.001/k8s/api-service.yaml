@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: task-api
+  namespace: task-api
+  labels:
+    app: task-api
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 5000
+      protocol: TCP
+      name: http
+    - port: 8000
+      targetPort: 5000
+      protocol: TCP
+      name: metrics
+  selector:
+    app: task-api
